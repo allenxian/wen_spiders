@@ -42,14 +42,13 @@ class FlashesSpider(BaseSpider):
         pass
 
     def process(self, begin_id):
-        # self.make_id_set(begin_id)
+        self.make_id_set(begin_id)
         while REDIS_CLIENT.scard(self.key) > 0:
             the_id = REDIS_CLIENT.spop(self.generate_key())
             try:
                 self.parse_news_flashes(the_id)
             except Exception as e:
                 print(e)
-                print('gg')
                 # REDIS_CLIENT.sadd(self.key, the_id)
 
 

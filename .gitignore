@@ -1,2 +1,5 @@
 .idea
 dump.rdb
+kr/__pycache__
+utils/__pycache__
+
