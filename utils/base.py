@@ -22,3 +22,6 @@ class base_spider(object):
         self.HEADERS.update({'User-Agent': random_ua()})
         return self.HEADERS
 
+    def p_get(self, url):
+        headers = self.random_header
+        return requests.get(url, headers=headers)
