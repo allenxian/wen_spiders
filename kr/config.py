@@ -19,5 +19,5 @@ mongo_setting = {
 REDIS_CLIENT = StrictRedis(**redis_setting[env])
 MONGO_CLIENT = MongoClient(mongo_setting[env])
 
-DB_NAME = '36kr'
+DB_NAME = 'kr'
 
