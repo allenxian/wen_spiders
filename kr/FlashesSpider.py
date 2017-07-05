@@ -1,12 +1,13 @@
 from kr.config import REDIS_CLIENT
+from kr.config import MONGO_CLIENT
 from utils.base import BaseSpider
+from threading import Thread
 import json
 
 
 class FlashesSpider(BaseSpider):
     website = 'kr'
     key_name = 'flashes'
-    # test url
     # news flashes template
     news_flashes_tpl = 'http://36kr.com/api/info-flow/newsflash_columns/newsflashes?b_id=%s&per_page=%s'
 
@@ -14,7 +15,7 @@ class FlashesSpider(BaseSpider):
         super(FlashesSpider, self).__init__()
         self.limit = 15000
 
-    def parse_news_flashes(self, cur_id):
+    def parse_news_flashes(self, cur_id, coll):
         per_page = 20
         cur_url = self.news_flashes_tpl % (cur_id.decode("utf-8"), per_page)
         print(cur_url)
@@ -24,7 +25,7 @@ class FlashesSpider(BaseSpider):
         for news in news_list:
             news.update({'_id': news['id']})
             try:
-                self.save_doc(self.coll, news)
+                self.save_doc(coll, news)
             except Exception as e:
                 print(e)
 
@@ -38,7 +39,10 @@ class FlashesSpider(BaseSpider):
         print('--------> finish making id set <--------')
         print('we have %s id now' % REDIS_CLIENT.scard(self.key))
 
-    def multi_thread(self):
+    def multi_thread(self, begin_id):
+        self.make_id_set(begin_id)
+        coll = MONGO_CLIENT['kr2']['kr_flashes_multi']
+
         pass
 
     def process(self, begin_id):
@@ -46,7 +50,7 @@ class FlashesSpider(BaseSpider):
         while REDIS_CLIENT.scard(self.key) > 0:
             the_id = REDIS_CLIENT.spop(self.generate_key())
             try:
-                self.parse_news_flashes(the_id)
+                self.parse_news_flashes(the_id, self.coll)
             except Exception as e:
                 print(e)
                 # REDIS_CLIENT.sadd(self.key, the_id)
