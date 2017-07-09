@@ -12,7 +12,7 @@ class BaseSpider(object):
         self.coll = self.db['%s_%s' % (self.website, self.key_name)]
         self.HEADERS = {'User-Agent': random_ua()}
 
-    def parse_value(self, response, selector, all=False):
+    def parse_value(self, response, selector, all=True):
         if all:
             rlts = filter(lambda value: value.strip() != '',
                           response.xpath(selector).extract())
