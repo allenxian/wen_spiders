@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from utils.base import BaseSpider
 import time
 from parsel import Selector
