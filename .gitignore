@@ -1,5 +1,4 @@
 .idea
 dump.rdb
-kr/__pycache__
-utils/__pycache__
+*/__pycache__
 
