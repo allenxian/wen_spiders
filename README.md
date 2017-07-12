@@ -8,4 +8,4 @@ I use `mongodb` as the default database and `redis` to control the parallel. You
 - [36kr news flashes](http://36kr.com/newsflashes)  
 This spider crawl the[36kr news flashes](http://36kr.com/newsflashes), which includes the title, description and other many useful information. It can be the corpus for information extraction.
 - [oxford words](http://www.oxfordlearnersdictionaries.com/us/wordlist/english/academic/)  
-This spider crawl the words from [Oxford Learner's Dictionaries](http://www.oxfordlearnersdictionaries.com/us/wordlist/english/academic/) for my dear fried [Zhang Yu](https://github.com/neilsustc)'s [Plugin](https://github.com/neilsustc/vscode-dic-completion) for vscode, which can complete the word when you are typing.
+This spider crawl the words from [Oxford Learner's Dictionaries](http://www.oxfordlearnersdictionaries.com/us/wordlist/english/academic/) for my dear friend [Zhang Yu](https://github.com/neilsustc)'s [Plugin](https://github.com/neilsustc/vscode-dic-completion) for vscode, which can complete the word when you are typing.
