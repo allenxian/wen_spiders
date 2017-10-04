@@ -60,29 +60,44 @@ class PPPSpider(BaseSpider):
         return proj_dict
         # print(title, re_time, area, trade, money, state, start_time, get_form, level, man, phone)
 
+    def parse_detail(self, id):
+        coll = MONGO_CLIENT['ppp']['proj_text']
+        resp = coll.find_one({'_id': id})['text']
+        hxs = Selector(text=resp)
+        shibie_jishi_xiangmugaikuang = list(self.parse_value(hxs, self.shibie_jishi_xiangmugaikuang_x))[0]
+        print(shibie_jishi_xiangmugaikuang)
 
-
+    def output_example(self, id):
+        coll = MONGO_CLIENT['ppp']['proj_text']
+        resp = coll.find_one({'_id': id})['text']
+        with open('example.html', 'w', encoding='utf8') as f_example:
+            f_example.write(resp)
+        print('ok')
 
 
 if __name__ == '__main__':
     spider = PPPSpider()
+
     lines = open('id_f.txt').readlines()
-    f = xlwt.Workbook()
-    sheet1 = f.add_sheet('sheet1', cell_overwrite_ok=True)
-    header = ['项目名称', '项目发布时间', '所在地区', '所属行业', '项目总投资', '所处阶段', '发起时间', '回报机制', '项目示范级别/批次', '项目联系人', '联系电话', '项目地址']
-    for i in range(len(header)):
-        sheet1.write(0, i, header[i])
-    for i in range(1, len(lines) + 1):
-        proj_id = lines[i -1].replace('\n', '')
-        proj_dict = spider.parse(proj_id)
-        for j in range(len(header) - 1):
-            sheet1.write(i, j, proj_dict[header[j]])
-        sheet1.write(i, len(header) - 1, spider.project_tpl % proj_id)
-        if i % 50 == 0:
-            print(i)
+    id_0 = lines[0].replace('\n', '')
+    spider.parse_detail(id_0)
+    spider.output_example(id_0)
 
-    f.save('ppp_1.xls')
 
+    # f = xlwt.Workbook()
+    # sheet1 = f.add_sheet('sheet1', cell_overwrite_ok=True)
+    # header = ['项目名称', '项目发布时间', '所在地区', '所属行业', '项目总投资', '所处阶段', '发起时间', '回报机制', '项目示范级别/批次', '项目联系人', '联系电话', '项目地址']
+    # for i in range(len(header)):
+    #     sheet1.write(0, i, header[i])
+    # for i in range(1, len(lines) + 1):
+    #     proj_id = lines[i -1].replace('\n', '')
+    #     proj_dict = spider.parse(proj_id)
+    #     for j in range(len(header) - 1):
+    #         sheet1.write(i, j, proj_dict[header[j]])
+    #     sheet1.write(i, len(header) - 1, spider.project_tpl % proj_id)
+    #     if i % 50 == 0:
+    #         print(i)
+    # f.save('ppp_1.xls')
     # for line in lines:
     #     proj_id = line.replace('\n', '')
     #     proj_dict = spider.parse(proj_id)
