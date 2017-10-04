@@ -18,7 +18,17 @@ class PPPSpider(BaseSpider):
     details_x = '//div[@class="margin"]//table[@class="view_table"]//text()'
 
     # detail xpath
-    shibie_jishi_xiangmugaikuang_x = '//*[@id="con_ss_1"]/div/table[1]/tbody/tr[1]/td[2]//text()'
+    # shibie
+    shibie_jishi_xmgk_x = '//*[@id="con_ss_1"]/div/table[1]/tbody/tr[1]/td[2]//text()'
+    shibie_jishi_xmhzfw_x = '//*[@id="con_ss_1"]/div/table[1]/tbody/tr[2]/td[2]//text()'
+    shibie_jishi_hzqx_x = '//*[@id="con_ss_1"]/div/table[1]/tbody/tr[3]/td[2]//text()'
+    shibie_jishi_xmyzfs_x = '//*[@id="con_ss_1"]/div/table[1]/tbody/tr[3]/td[4]//text()'
+    shibie_jishi_cgshzbfs_x = '//*[@id="con_ss_1"]/div/table[1]/tbody/tr[4]/td[2]//text()'
+    shibie_jishi_wpp_x = '//*[@id="con_ss_1"]/div/table[1]/tbody/tr[5]/td[2]//text()'
+
+
+
+
 
     def get_list(self, page_num):
         payload = {'queryPage': page_num}
@@ -59,16 +69,27 @@ class PPPSpider(BaseSpider):
                             proj_dict[keyword] = 'null'
                     except Exception as e:
                         proj_dict[keyword] = 'null'
-
         return proj_dict
         # print(title, re_time, area, trade, money, state, start_time, get_form, level, man, phone)
+
 
     def parse_detail(self, id):
         coll = MONGO_CLIENT['ppp']['proj_text']
         resp = coll.find_one({'_id': id})['text']
         hxs = Selector(text=resp)
-        shibie_jishi_xiangmugaikuang = list(self.parse_value(hxs, self.shibie_jishi_xiangmugaikuang_x))[0]
-        print(shibie_jishi_xiangmugaikuang)
+        shibie_jishi_xmgk = list(self.parse_value(hxs, self.shibie_jishi_xmgk_x))[0]
+        print(shibie_jishi_xmgk)
+        shibie_jishi_xmhzfw = list(self.parse_value(hxs, self.shibie_jishi_xmhzfw_x))[0]
+        print(shibie_jishi_xmhzfw)
+        shibie_jishi_hzqx = list(self.parse_value(hxs, self.shibie_jishi_hzqx_x))[0]
+        print(shibie_jishi_hzqx)
+        shibie_jishi_xmyzfs = list(self.parse_value(hxs, self.shibie_jishi_xmyzfs_x))[0]
+        print(shibie_jishi_xmyzfs)
+        shibie_jishi_cgshzbfs = list(self.parse_value(hxs, self.shibie_jishi_cgshzbfs_x))[0]
+        print(shibie_jishi_cgshzbfs)
+        shibie_jishi_wpp = list(self.parse_value(hxs, self.shibie_jishi_wpp_x))
+        print(shibie_jishi_wpp)
+
 
     def output_example(self, id):
         coll = MONGO_CLIENT['ppp']['proj_text']
@@ -84,7 +105,7 @@ if __name__ == '__main__':
     lines = open('id_f.txt').readlines()
     id_0 = lines[0].replace('\n', '')
     spider.parse_detail(id_0)
-    spider.output_example(id_0)
+    # spider.output_example(id_0)
 
 
     # f = xlwt.Workbook()

@@ -1,0 +1,1306 @@
+
+<!DOCTYPE html>
+<html>
+<head> 
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache"> 
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache"> 
+<META HTTP-EQUIV="Expires" CONTENT="0">
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<base href="http://www.cpppc.org:8082/efmisweb/"> 
+<!-- 龙图的JS -->  
+
+<script type="text/javascript" src="getScript.do?url=static/ext.lt/js/frameworksupport.gzjs&version=1"></script>  
+<script type="text/javascript" src="getScript.do?url=static/ext.lt/js/ltext_core.gzjs&version=1"></script>
+ 
+<!--wanhm 2015/7/6
+<script type="text/javascript" src="static/ext.lt/js/datatable3.0.gzjs"></script> 
+<script type="text/javascript" src="static/ext.lt/js/editdatatable.gzjs"></script>  
+<script type="text/javascript" src="getScript.do?url=static/ext.lt/js/formulasdatatable.gzjs&version=1"></script>
+-->               
+
+<!--添加jquery --> 
+<script type="text/javascript" src="getScript.do?url=static/jquery/jquery-1.9.0.min.gzjs&version=1"></script> 
+
+<!--    
+<script type="text/javascript" src="static/jquery/jquery-1.9.0.min.js"></script>  
+-->
+<script type="text/javascript"> 
+var basePath = "http://www.cpppc.org:8082/efmisweb/";
+var systemStyle = "default";
+var fileServerPort = "7002";
+var systemTitle = "金财工程应用支撑平台";
+var skinConfig={
+    style: "default"
+
+}; 
+var tokenID =  "null";
+var moduleId =  "null";
+var tokenParam = "tokenid=null";
+function setTokenID(e) {
+	var url = e.url;
+	if (e.dataType != null && e.dataType.toLowerCase() == 'script') {
+		return e;
+	}
+	if (url.indexOf("?") == -1) {
+		url = url + "?" + tokenParam;
+	} else if (url.indexOf("tokenid") == -1) {
+		url = url + "&" + tokenParam;
+	}
+	e.url = url;
+	return e;
+}
+
+function getPort(){
+	return ":8083/";
+}
+ /**
+  Hq.modules.version={
+  "static/ext.lt/js/editpanel.js":"1",
+  "static/json/json2.js":"3"  
+  }; 
+  */ 
+  // Hq.modules.version="2" 
+  
+ </script> 
+</head>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head lang="zh-CN">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv=X-UA-Compatible content="IE=edge,chrome=1">
+	<meta content=always name=referrer>
+    <!--[if lt IE 9]>
+    <script src="http://apps.bdimg.com/libs/html5shiv/3.7/html5shiv.min.js"></script>
+    <script src="http://apps.bdimg.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+	<link href="css/demonstrationProj/css/bootstrap.min.css" rel="stylesheet ">
+    <title>项目信息公开</title>
+    <style>
+	    .listsg {    width: 980px;margin: 0 auto;    font-size: 14px; height: 40px;color: #7E6D7C; background-color: #f7f7f7 ;margin-top: 20px;}
+		.listsg ul   {    margin-left: -4%;}
+		.listsg li{list-style-type: none;float: left;    width: 20%; height:40px;font-weight: bold; text-align: center;  }
+		.listsg li span {     display: block;margin-top: 11px;}
+		.txtlft { text-align: left;font-size: 16px;color:#004C93;font-weight: bold;margin: 0 0 10px 3px;}
+   
+        .view_table {border-collapse: collapse;line-height: 24px;width: 100%;color: #7D6666;margin-top: 15px;}
+        .view_table tr th{background:#36F; color:#FFF; font-size:13px; height:24px; line-height:24px;border-right:solid 1px #36F;}
+        .view_table tr td{border:solid 1px #efeded;padding:10px;text-align: center;}
+        .view_table tr {height: 40px;}
+        .txtlft { text-align: left;font-size: 16px;color:#004C93;font-weight: bold;margin: 0 0 10px 3px;border-left: 3px solid #004C93;padding-left: 8px;}
+        .margin {width: 980px;margin: 0 auto;}
+        .header {height: 80px;background: url(images/map/header.png) repeat-x;}
+        a {color: #666;text-decoration: none;}
+        .listsg li{width:20%;cursor: pointer;+width:19.2%;  }
+        .active{background: #0081cc; color: #fff; }
+        .disabledtab{
+			pointer-events:none;   cursor: context-menu;
+		}
+        .footer {background: url(images/map/footer.png) repeat-x;height: 111px;font-size:12px;}
+		.footer .mar {width: 390px;margin:0 auto; padding-top:20px;}
+		.footer .img {float: left;height: 62px;width: 50px;padding-top:5px;}
+		.footer .dis {margin-left: 55px;}
+		.footer .guild {line-height: 24px;color: #FFFFFF;text-align:center;} 
+		.footer .guild i {font-style: normal; margin:0 8px;}
+		.footer .guild a {color: #FFFFFF;}
+		.footer .guild a:hover {color: #fff;text-decoration: underline;}
+		.footer .copyr {line-height: 24px;color: #FFFFFF;text-align:center;}
+        #code{position:fixed;top:35%;right:2%;z-index:1;width:105px;height:135px;z-index:1;}
+		/*html #code{position:absolute;top:expression(eval(document.documentElement.scrollTop+document.documentElement.clientHeight-this.offsetHeight-(parseInt(this.currentStyle.marginTop,10)||0)-(parseInt(this.currentStyle.marginBottom,10)||0)));zoom:1;}
+		#code .con{display:block;width:105px;height:135px;} */
+    </style>
+
+<style type="text/css">
+.header1 {
+    background: url(images/map/headerYn.png) repeat-x;
+}
+</style>
+</head>
+<body style="background-color: #fff;font-family: 'Microsoft Yahei'">
+<input type="hidden" id="stateValue" name="stateValue" value="1" />
+<!--header-->
+
+	
+	
+		<div class="header">
+		    <div class="margin">
+		        <div class="logo"><img  style="margin-top:10px;" src="images/map/logo1.png"></div>
+		    </div>
+		</div>
+	
+
+
+<div class="margin" style="margin-top: 2%;border: 1px solid #dddddd;background-color: #fff;">
+    <center style="margin-top:10px;"><b><font style="font-size: 30px;color:#004C93">北京市国道109高速公路PPP项目</font> </b></center>
+    <center style="margin-top:10px;">项目发布时间：2017年7月26日</center>
+    <table class="view_table" style="font-size: 13px;line-height: 26px;width:940px;margin:15px auto;">
+        <tbody>
+        <tr>
+            <td  style="font-weight: bold;width: 20%;" >所在地区</td>
+            <td colspan="2" style="text-align: left">北京市  </td>
+            <td rowspan="4" colspan="3" style="width: 50%;"><img style="  vertical-align: middle;" src="http://www.cpppc.org/r/cms/ppp/ppp/newPPP/hyImg/02.png"></td>
+        </tr>
+
+        <tr>
+            <td ><b>所属行业</b></td>
+            <td colspan="2" style="text-align: left">交通运输->高速公路</td>
+
+        </tr>
+        <tr>
+            <td ><b>项目总投资</b></td>
+            <td colspan="2" style="text-align: left"> 2,210,000万元</td>
+
+        </tr>
+        <tr>
+            <td ><b>所处阶段</b></td>
+            <td colspan="2" style="text-align: left">识别阶段</td>
+
+        </tr>
+        <tr>
+            <td ><b>发起时间</b></td>
+            <td colspan="2" style="text-align: left">2016-09-06</td>
+            <td style="width: 25%;"><b>回报机制</b></td>
+            <td colspan="2" style="text-align: left">可行性缺口补助</td>
+
+        </tr>
+       
+        <tr>
+            <td ><b>项目示范级别/批次</b></td>
+            <td colspan="5" style="text-align: left">其它</td>
+            
+        </tr>
+        <tr>
+            <td ><b>项目联系人</b></td>
+            <td colspan="2" style="text-align: left">王晓磊</td>
+            <td ><b>联系电话</b></td>
+            <td colspan="2" style="text-align: left">57078407</td>
+        </tr>
+
+
+        </tbody>
+    </table>
+</div>
+<!--阶段-->
+<div class="" style="margin-top: 2%;width:980px;margin:0 auto;">
+    <!--tab-->
+  <!-- <ul id="Tab" class="nav nav-tabs" style="border-bottom: 1px solid #dddddd;background-color: rgba(186, 197, 200, 0.22);height: 41px;margin-top: 2%;">
+        <li class="active"><a id="shibiea" href="" data-toggle="tab" class="active">
+            <span>识别阶段</span>
+        </a>
+        </li>
+        <li id="zhuibeil"><a id="zhuibeia" href="" data-toggle="tab" >
+            <span>准备阶段</span></a>
+        </li>
+        <li id="caigoul"><a id="caigoua" href="" data-toggle="tab">
+            <span>采购阶段</span></a>
+        </li>
+        <li id="zhixingl"><a id="zhixinga" href="" data-toggle="tab">
+            <span>执行阶段</span></a>
+        </li>
+        <li id="yijiaol"><a id="yijiaoa" href="" data-toggle="tab">
+            <span>移交阶段</span></a>
+        </li>
+    </ul> -->
+   <div class="listsg" >
+		<ul>
+			<li id="ss_1" class="active" onclick="setTab2('ss',1,5);"><span>识别阶段</span></li>
+			<li id="ss_2" onclick="setTab2('ss',2,5);"><span>准备阶段</span></li>
+			<li id="ss_3" onclick="setTab2('ss',3,5);"><span>采购阶段</span></li>
+			<li id="ss_4" onclick="setTab2('ss',4,5);"><span>执行阶段</span></li >
+			<li id="ss_5" onclick="setTab2('ss',5,5);" class="disabled"><span>移交阶段</span></li>
+		</ul>
+	</div>
+    
+    
+    
+    
+    <!--阶段-->
+    <div id="TabContent" class="tab-content" style="border: 1px solid #dddddd;background-color: #fff;padding: 10px 20px;">
+        <!--识别阶段-->
+        
+        
+        <div id="con_ss_1">
+			<div>
+				
+
+
+<!DOCTYPE html>
+<html>
+<head lang="zh-CN">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!--[if lt IE 9]>
+    <script src="http://apps.bdimg.com/libs/html5shiv/3.7/html5shiv.min.js"></script>
+    <script src="http://apps.bdimg.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link href="css/demonstrationProj/css/bootstrap.min.css" rel="stylesheet ">
+    <title>咨询机构查询</title>
+</head>
+<body style="background-color: #fff;font-family: 'Microsoft Yahei'">
+
+ <p class="txtlft" style="margin-top: 15px;">即时公开</p>
+ <table class="view_table" style="font-size: 13px;line-height: 26px;">
+     <tbody>
+     <tr>
+         <td style="width: 20%"><b>项目概况(识别)</b></td>
+         <td colspan="5" style="text-indent: 25px;text-align: left">国道109高速公路（西六环-市界），全长69.2公里，预估总投资2210000万元。</td>
+     </tr>
+     <tr>
+         <td ><b>项目合作范围(识别)</b></td>
+         <td colspan="5" style="text-indent: 25px;text-align: left">高速公路投资、建设、运营管理。</td>
+     </tr>
+     <tr>
+         <td ><b>合作期限(识别)</b></td>
+         <td style="width: 30%;text-align: left" colspan="2">25年</td>
+         <td style="width: 20%;"><b>项目运作方式(识别)</b></td>
+         <td style="width: 30%;text-align: left" colspan="2">BOT</td>
+     </tr>
+     <tr>
+         <td ><b>采购社会资本方式</b></td>
+         <td colspan="5" style="text-align: left">公开招标</td>
+     </tr>
+     <tr>
+         <td ><b>物有所值定性评价指标及权重、评分标准、评分结果</b></td>
+         <td colspan="5" style="text-align: left">
+			
+		</td>
+     </tr>
+     <tr>
+         <td ><b>物有所值评价通过与否的评价结论（含财政部门会同行业部门对报告的审核意见）</b></td>
+         <td colspan="5" style="text-indent: 25px;text-align: left"><span style="color: #ff9c00;">实施方案批复文件下发后10个工作日内</span></td>
+     </tr>
+     <tr>
+         <td style="text-align:center;font-weight: bold;background-color: #e2edff;;font-size: 14px;border-top: none;border-bottom: none;" colspan="6">本项目以及年度全部已实施和拟实施的PPP项目财政支出责任数额及年度预算安排情况，<br/>
+             以及每一年度全部PPP项目从预算中安排的支出责任占一般公共预算支出比例情况</td>
+     </tr>
+     <tr style="border: none;">
+         <td colspan="6" style="border: none;padding: 0;">
+             <table class="view_table" style="font-size: 13px;line-height: 26px;margin-top: 0;">
+                 <tbody>
+                 <tr>
+                     <td style="width: 8%;"><b>支出年度</b></td>
+                     <td style="width: 18%;"><b>A-本项目财政支出总额（万元）</b></td>
+                     <td style="width: 18%;"><b>B-全部已实施PPP项目财政支出责任数额（万元）</b></td>
+                     <td style="width: 21%;"><b>C-全部拟实施其他PPP项目财政支出责任数额（万元）</b></td>
+                     <td style="width: 17%;"><b>D-年度一般公共预算支出数额（万元）</b></td>
+                     <td style="width: 18%;"><b>占比-(A+B+C)/D(%)</b></td>
+                 </tr>
+                 
+  				
+  					<tr>
+  						<td colspan="6" style="color: #ff9c00;">
+  							<span style="color: #ff9c00;">实施方案批复文件下发后10个工作日内</span>
+  						</td>
+  					</tr>
+  				
+                 </tbody>
+             </table>
+         </td>
+     </tr>
+     <tr>
+         <td style="border-top:none;"><b>财政承受能力论证的测算依据、主要因素和指标</b></td>
+         <td colspan="5" style="text-align: left;border-top:none;">
+			
+         </td>
+     </tr>
+     <tr>
+         <td ><b>通过财政承受能力论证与否的结论</b></td>
+         <td colspan="5" style="text-indent: 25px;text-align: left"> <span style="color: #ff9c00;">实施方案批复文件下发后10个工作日内</span></td>
+     </tr>
+
+     </tbody>
+ </table>
+
+ <p class="txtlft" style="    margin-top: 30px;">适时公开</p>
+ <table class="view_table" style="font-size: 13px;line-height: 26px;">
+     <tbody>
+     <tr>
+         <td style="    width: 20%;"><b>审核通过的物有所值评价报告（含财政部门对报告的批复文件）</b></td>
+            <td colspan="5" style="text-align: left">
+            	
+	  			
+	  				<span style="color: #ff9c00;">进入项目执行阶段后6个月内公开</span>
+	  			
+            </td>
+        </tr>
+        <tr>
+            <td ><b>审核通过的财政承受能力论证报告（含财政部门对报告的批复文件）</b></td>
+            <td colspan="5" style="text-align: left">
+            	
+  				
+	  				<span style="color: #ff9c00;">进入项目执行阶段后6个月内公开</span>
+	  			
+            </td>
+        </tr>
+        <tr>
+            <td ><b>新建或改扩建项目建议书及批复文件</b></td>
+            <td colspan="5" style="text-align: left">
+            	
+				
+	  				<span style="color: #ff9c00;">进入项目执行阶段后6个月内公开</span>
+	  			
+            </td>
+        </tr>
+        <tr>
+            <td ><b>可行性研究报告（含全套支撑性文件）及批复文件</b></td>
+            <td colspan="5" style="text-align: left">
+            	
+				
+	  				<span style="color: #ff9c00;">进入项目执行阶段后6个月内公开</span>
+	  			
+            </td>
+        </tr>
+        <tr>
+            <td ><b>设计文件及批复文件</b></td>
+            <td colspan="5" style="text-align: left">
+            	
+				
+	  				<span style="color: #ff9c00;">进入项目执行阶段后6个月内公开</span>
+	  			
+            </td>
+        </tr>
+        <tr>
+            <td ><b>存量公共资产或权益的资产评估报告，以及存量资产或权益转让时所可能涉及到的各类方案等</b></td>
+            <td colspan="5" style="text-align: left">
+            	
+				
+	  				<span style="color: #ff9c00;">进入项目执行阶段后6个月内公开</span>
+	  			
+            </td>
+        </tr>
+        </tbody>
+    </table>
+        
+<script src="css/ppp/expertLibrary/js/jquery.min.js"></script>
+<script src="css/ppp/expertLibrary/js/bootstrap.min.js"></script>
+</body>
+</html>
+			</div>
+        	
+        </div>
+        <div style="display:none;" id="con_ss_2">
+			<div>
+				
+<!DOCTYPE html>
+<html>
+<head lang="zh-CN">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!--[if lt IE 9]>
+    <script src="http://apps.bdimg.com/libs/html5shiv/3.7/html5shiv.min.js"></script>
+    <script src="http://apps.bdimg.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link href="css/demonstrationProj/css/bootstrap.min.css" rel="stylesheet ">
+    <title>咨询机构查询</title>
+</head>
+<body style="background-color: #fff;font-family: 'Microsoft Yahei'">
+
+  <!--准备阶段-->
+      <p class="txtlft" style="margin-top: 15px;">即时公开</p>
+      <table class="view_table" style="font-size: 13px;line-height: 26px;">
+          <tbody>
+          <tr>
+              <td style="width: 20%"><b>项目概况(准备)</b></td>
+              <td colspan="5" style="text-indent: 25px;text-align: left"></td>
+          </tr>
+          <tr>
+              <td ><b>项目合作范围(准备)</b></td>
+              <td colspan="5" style="text-indent: 25px;text-align: left"></td>
+          </tr>
+          <tr>
+              <td ><b>合作期限(准备)</b></td>
+              <td style="width: 30%;text-align: left" colspan="2">年</td>
+              <td style="width: 20%;"><b>项目运作方式(准备)</b></td>
+              <td style="width: 30%;text-align: left" colspan="2"></td>
+          </tr>
+          <tr>
+              <td ><b>采购社会资本方式</b></td>
+              <td colspan="5" style="text-align: left"></td>
+          </tr>
+          <tr>
+              <td style="width: 20%"><b>政府方授权文件，包括对实施机构、PPP项目合同的政府方签约主体、政府方出资代表等的授权</b></td>
+              <td colspan="5" style="text-align: left">
+              	
+              </td>
+          </tr>
+          <tr>
+              <td ><b>政府对实施方案的审核批复文件</b></td>
+              <td colspan="5" style="text-align: left">
+              	
+              </td>
+          </tr>
+          </tbody>
+      </table>
+
+      <p class="txtlft" style="    margin-top: 30px;">适时公开</p>
+      <table class="view_table" style="font-size: 13px;line-height: 26px;">
+          <tbody>
+          <tr>
+              <td style="    width: 20%;"><b>交易结构（含投融资结构、回报机制、相关配套安排）、项目产出说明和绩效标准、风险分配框架、合同体系、监管体系</b></td>
+              <td colspan="5" rowspan="2" style="text-align: left">
+              	
+				
+	  				<span style="color: #ff9c00;">进入项目执行阶段后6个月内公开</span>
+	  			
+             </td>
+          </tr>
+          <tr>
+              <td style="width: 20%;"><b>审核通过的项目实施方案及修正案</b></td>
+          </tr>
+          </tbody>
+      </table>
+       
+</body>
+</html>
+			</div>
+        	
+        </div>
+        <div style="display:none;" id="con_ss_3">
+			<div>
+				
+<!DOCTYPE html>
+<html>
+<head lang="zh-CN">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!--[if lt IE 9]>
+    <script src="http://apps.bdimg.com/libs/html5shiv/3.7/html5shiv.min.js"></script>
+    <script src="http://apps.bdimg.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link href="css/demonstrationProj/css/bootstrap.min.css" rel="stylesheet ">
+    <title>咨询机构查询</title>
+</head>
+    <p class="txtlft" style="margin-top: 15px;">即时公开</p>
+    <table class="view_table" style="font-size: 13px;line-height: 26px;">
+        <tbody>
+        <tr>
+            <td style="width: 20%"><b>项目资格预审公告（含资格预审申请文件）</b></td>
+            <td colspan="5" style="text-align: left">
+            	
+            </td>
+        </tr>
+        <tr>
+            <td style="width: 20%"><b>预中标及成交结果公告；中标、成交结果公告及中标通知书</b></td>
+            <td colspan="5" style="text-align: left">
+            	
+            </td>
+        </tr>
+         <tr>
+            <td style="width: 20%"><b>项目本级行业主管部门对拟签署PPP合同的审核意见</b></td>
+            <td colspan="5" style="text-indent: 25px;text-align: left">
+            	
+            </td>
+        </tr>
+         <tr>
+            <td style="width: 20%"><b>项目本级财政部门对拟签署PPP合同的审核意见</b></td>
+            <td colspan="5"  style="text-indent: 25px;text-align: left">
+            	
+            </td>
+        </tr>
+         <tr>
+            <td style="width: 20%"><b>项目本级法制部门对拟签署PPP合同的审核意见</b></td>
+            <td colspan="5"  style="text-indent: 25px;text-align: left">
+            	
+            </td>
+        </tr>
+         <tr>
+            <td style="width: 20%"><b>项目本级人民政府是否批准了拟签署的PPP合同</b></td>
+            <td colspan="2"  style="text-align: left;width: 30%;">
+            	
+           			
+           			
+           			
+           				
+           			
+            	
+            </td>
+            
+       			
+          	
+        </tr>
+        <tr>
+            <td ><b>PPP项目合同核心条款，应包括主要产出说明、绩效指标回报机制、调价机制 </b></td>
+            <td colspan="5" style="text-align: left">
+            	
+   				
+					<span style="color: #ff9c00;">项目合同经人民政府审核通过后10个工作日内的附件依据相关法律规定公开</span>
+				
+            </td>
+        </tr>
+        <tr>
+            <td ><b>项目采购阶段调整、更新的政府方授权文件</b></td>
+            <td colspan="5" style="text-align: left">
+            	
+				
+					<span style="color: #ff9c00;">项目合同经人民政府审核通过后10个工作日内的附件依据相关法律规定公开</span>
+				
+			</td>
+        </tr>
+        <tr>
+            <td style="width: 20%"><b>项目本级人民政府对PPP项目合同中约定的政府跨年度财政支出责任纳入中期财政规划的审核意见</b></td>
+            <td colspan="2"  style="text-align: left;width: 30%;">
+            	
+           			
+           			
+           			
+           				
+           			
+            	
+            </td>
+            <td style="width: 20%"><b>审核日期</b></td>
+            <td colspan="2"  style="text-align: left">
+            	
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <p class="txtlft" style="    margin-top: 30px;">适时公开</p>
+    <table class="view_table" style="font-size: 13px;line-height: 26px;">
+        <tbody>
+        <tr>
+            <td style="    width: 20%;"><b>项目采购文件、补遗文件</b></td>
+            <td colspan="5" style="text-align: left">
+            	
+				
+	  				<span style="color: #ff9c00;">进入项目执行阶段后6个月内公开</span>
+	  			
+            </td>
+        </tr>
+        <tr>
+            <td style="    width: 20%;"><b>资格预审专家评审结论性意见及资格预审专家名单</b></td>
+            <td colspan="5" style="text-align: left">
+            	
+				
+	  				<span style="color: #ff9c00;">进入项目执行阶段后6个月内公开</span>
+	  			
+            </td>
+        </tr>
+        <tr>
+            <td style="    width: 20%;"><b>资格预审专家评审结论性意见及资格预审专家名单</b></td>
+            <td colspan="5" style="text-align: left">
+            	
+				
+	  				<span style="color: #ff9c00;">进入项目执行阶段后6个月内公开</span>
+	  			
+            </td>
+        </tr>
+        <tr>
+            <td style="    width: 20%;"><b>确认谈判工作组成员名单</b></td>
+            <td colspan="5" style="text-align: left">
+            	
+				
+	  				<span style="color: #ff9c00;">进入项目执行阶段后6个月内公开</span>
+	  			
+            </td>
+        </tr>
+        <tr>
+            <td style="    width: 20%;"><b>已签署的PPP项目合同</b></td>
+            <td colspan="5" style="text-align: left">
+            	
+				
+	  				<span style="color: #ff9c00;">进入项目执行阶段后6个月内公开</span>
+	  			
+            </td>
+        </tr>
+        <tr>
+            <td style="    width: 20%;"><b>本项目政府支出责任确认文件或更新调整文件，以及同级人大（或人大常委会）将本项目财政支出责任纳入跨年度预算的批复文件</b></td>
+            <td colspan="5" style="text-align: left">
+            	
+				
+	  				<span style="color: #ff9c00;">进入项目执行阶段后6个月内公开</span>
+	  			
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</html>
+			</div>
+        	
+        </div>
+        <div style="display:none;" id="con_ss_4">
+			<div>
+				
+ 
+<!DOCTYPE html>
+<html>
+<head lang="zh-CN">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!--[if lt IE 9]>
+    <script src="http://apps.bdimg.com/libs/html5shiv/3.7/html5shiv.min.js"></script>
+    <script src="http://apps.bdimg.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link href="css/demonstrationProj/css/bootstrap.min.css" rel="stylesheet ">
+    <title>咨询机构查询</title>
+</head>
+<body style="background-color: #fff;font-family: 'Microsoft Yahei'">
+
+
+        <!--执行阶段-->
+            <p class="txtlft" style="margin-top: 15px;">即时公开</p>
+            <table class="view_table" style="font-size: 13px;line-height: 26px;">
+                <tbody>
+                <tr>
+                    <td style="width:20%;"><b>项目公司名称</b></td>
+                    <td colspan="5" style="text-align: left;width: 30%;"></td>
+                </tr>
+                <tr>
+                   
+                    <td style="width: 20%;"><b>项目公司成立时间</b></td>
+                    <td colspan="2" style="text-align: left;width: 30%;"></td>
+                    <td style="width: 20%;"><b>项目公司注册资金</b></td>
+                    <td colspan="2" style="text-align: left">万元</td>
+                </tr>
+                <!--股东认缴-->
+                <tr>
+                    <td style="text-align:center;font-weight: bold;background-color: #e2edff;;font-size: 14px;border-bottom: none;" colspan="6">股东认缴</td>
+                </tr>
+                <tr style="border: none;">
+                    <td colspan="6" style="border: none;padding: 0;">
+                        <table id="gdrjTable" class="view_table" style="font-size: 13px;line-height: 26px;margin-top: 0;">
+                            <tbody>
+                            <tr>
+                                <td style="width: 5%;"><b>序号</b></td>
+                                <td style="width: 45%;"><b>股东名称</b></td>
+                                <td style="width: 17%;"><b>政府或社会资本</b></td>
+                                <td style="width: 17%;"><b>出资额（万元）</b></td>
+                                <td style="width: 16%;"><b>股权比例（%）</b></td>
+                            </tr>
+                            
+                            	
+			   					
+			   						<tr>
+			   							<td style="text-align:center;" colspan="5">暂无</td>
+				   					</tr>
+			   					
+			   					
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+                 <tr>
+                    <td style="width: 20%;border-top: none;"><b>本级人民政府对政府方出资代表的授权</b></td>
+                     <td colspan="5" style="text-align: left;border-top:none;">
+                    	 
+                           	
+		   					
+		   						暂无
+		   					
+		   					
+                    </td>
+                </tr>
+                 <tr>
+                    <td style="width: 20%;border-top: none;"><b>增减资情况</b></td>
+                     <td colspan="5" style="text-align: left;border-top:none;">
+                    	 
+                           	
+		   					
+		   						暂无
+		   					
+		   					
+                    </td>
+                </tr>
+                <tr>
+                    <td style="width: 20%;border-top: none;"><b>项目施工许可证</b></td>
+                    <td colspan="5" style="border-top: none;text-align: left">
+                    	
+                    	
+		   				
+	   						  <span  style="color: #ff9c00;">依据PPP项目合同约定；如PPP项目合同未约定时，则在对应活动结束后次年的4月30日前予以公开</span> 
+	   					
+                    </td>
+                </tr>
+                <!--项目建设进度、质量、造价等复合型检查情况-->
+                <tr>
+                    <td style="text-align:center;font-weight: bold;background-color: #e2edff;;font-size: 14px;border-top: none;border-bottom: none;" colspan="6">项目建设进度情况</td>
+                </tr>
+                <tr style="border: none;">
+                    <td colspan="5" style="border: none;padding: 0;">
+                        <table id="jsjdTable" class="view_table" style="font-size: 13px;line-height: 26px;margin-top: 0;">
+                            <tbody>
+                            <tr>
+                                <td style="width: 7%;"><b>序号</b></td>
+                                <td style="width: 12%;"><b>时间</b></td>
+                                <td style="width: 36%;"><b>建设进度情况</b></td>
+                                <td style="width: 36%;"><b>对应合同预定条款</b></td>
+                                <td style="width: 9%;"><b>是否符合</b></td>
+                            </tr>
+                            
+                            
+		   					
+		   						  <tr>
+		                              <td style="color: #ff9c00;border-bottom: none;" colspan="5">依据PPP项目合同约定；如PPP项目合同未约定时，则在对应活动结束后次年的4月30日前予以公开</td>
+		                          </tr>
+		   					
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align:center;font-weight: bold;background-color: #e2edff;;font-size: 14px;border-top: none;border-bottom: none;" colspan="6">项目质量符合性检查情况</td>
+                </tr>
+                <tr style="border: none;">
+                    <td colspan="5" style="border: none;padding: 0;">
+                        <table id="zljcTable" class="view_table" style="font-size: 13px;line-height: 26px;margin-top: 0;">
+                            <tbody>
+                            <tr>
+                                <td style="width: 7%;"><b>序号</b></td>
+                                <td style="width: 12%;"><b>时间</b></td>
+                                <td style="width: 36%;"><b>项目质量检查情况</b></td>
+                                <td style="width: 36%;"><b>对应合同预定条款</b></td>
+                                <td style="width: 9%;"><b>是否符合</b></td>
+                            </tr>
+		   					
+                            
+		   					
+		   						  <tr>
+		                              <td style="color: #ff9c00;border-bottom: none;" colspan="5">依据PPP项目合同约定；如PPP项目合同未约定时，则在对应活动结束后次年的4月30日前予以公开</td>
+		                          </tr>
+		   					
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align:center;font-weight: bold;background-color: #e2edff;;font-size: 14px;border-top: none;border-bottom: none;" colspan="6">项目造价等符合性检查情况</td>
+                </tr>
+                <tr style="border: none;">
+                    <td colspan="5" style="border: none;padding: 0;">
+                        <table id="zjjcTable" class="view_table" style="font-size: 13px;line-height: 26px;margin-top: 0;">
+                            <tbody>
+                            <tr>
+                                <td style="width: 7%;"><b>序号</b></td>
+                                <td style="width: 12%;"><b>时间</b></td>
+                                <td style="width: 36%;"><b>项目造价检查情况</b></td>
+                                <td style="width: 36%;"><b>对应合同预定条款</b></td>
+                                <td style="width: 9%;"><b>是否符合</b></td>
+                            </tr>
+                            
+                            
+		   					
+		   						  <tr>
+		                              <td style="color: #ff9c00;border-bottom: none;" colspan="5">依据PPP项目合同约定；如PPP项目合同未约定时，则在对应活动结束后次年的4月30日前予以公开</td>
+		                          </tr>
+		   					
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+                <!--社会资本或项目公司的年度运营情况及运营绩效达标情况-->
+                <tr>
+                    <td style="text-align:center;font-weight: bold;background-color: #e2edff;;font-size: 14px;border-top: none;border-bottom: none;" colspan="6">社会资本或项目公司的年度运营情况及运营绩效达标情况</td>
+                </tr>
+                <tr style="border: none;">
+                    <td colspan="6" style="border: none;padding: 0;">
+                        <table id="ndyyjxdbTable" class="view_table" style="font-size: 13px;line-height: 26px;margin-top: 0;">
+                            <tbody>
+                            <tr>
+                                <td style="width: 10%;"><b>序号</b></td>
+                                <td style="width: 35%;"><b>时间</b></td>
+                                <td style="width: 55%;"><b>年度运营情况及运营绩效达标情况相关附件</b></td>
+                            </tr>
+                            
+                            
+		   					
+		   						  <tr>
+		                              <td style="color: #ff9c00;border-bottom: none;" colspan="3">依据PPP项目合同约定；如PPP项目合同未约定时，则在对应活动结束后次年的4月30日前予以公开</td>
+		                          </tr>
+		   					
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="width: 20%;"><b>项目公司绩效监测报告</b></td>
+                    <td colspan="5" style="text-align: left">
+                    	
+                    	
+		   				
+	   						 <span style="color: #ff9c00;">依据PPP项目合同约定；如PPP项目合同未约定时，则在对应活动结束后次年的4月30日前予以公开 </span>
+	   					
+                    </td>
+                </tr>
+                <!--中期评估报告-->
+                <tr>
+                    <td style="text-align:center;font-weight: bold;background-color: #e2edff;;font-size: 14px;border-top: none;border-bottom: none;" colspan="6">中期评估报告</td>
+                </tr>
+                <tr style="border: none;">
+                    <td colspan="6" style="border: none;padding: 0;">
+                        <table id="zqpgTable" class="view_table" style="font-size: 13px;line-height: 26px;margin-top: 0;">
+                            <tbody>
+                            <tr>
+                                <td style="width: 10%;"><b>序号</b></td>
+                                <td style="width: 16%;"><b>评估时间</b></td>
+                                <td style="width: 37%;"><b>评估机构</b></td>
+                                <td style="width: 37%;"><b>评估报告相关附件</b></td>
+                            </tr>
+                            
+                            
+		   					
+		   						  <tr>
+		                              <td style="color: #ff9c00;border-bottom: none;" colspan="4">依据PPP项目合同约定；如PPP项目合同未约定时，则在对应活动结束后次年的4月30日前予以公开</td>
+		                          </tr>
+		   					
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="width: 20%;"><b>项目重大变更或终止情况</b></td>
+                    <td colspan="5" style="text-align: left">
+                    	
+                    	
+		   				
+	   						  <span style="color: #ff9c00;">依据PPP项目合同约定；如PPP项目合同未约定时，则在对应活动结束后次年的4月30日前予以公开 </span>
+	   					
+                    </td>
+                </tr>
+                <tr>
+                    <td style="width: 20%;"><b>项目定价及历次调价情况</b></td>
+                    <td colspan="5" style="text-align: left">
+                    	
+                    	
+		   				
+	   						 <span style="color: #ff9c00;"> 依据PPP项目合同约定；如PPP项目合同未约定时，则在对应活动结束后次年的4月30日前予以公开</span> 
+	   					
+					</td>
+                </tr>
+                <tr>
+                    <td style="width: 20%;"><b>重大违约及履约担保的提取情况，对公众投诉的处理情况等</b></td>
+                    <td colspan="5" style="text-align: left">
+                    	 
+                           	
+		   					
+		   						暂无
+		   					
+		   					
+                    </td>
+                </tr>
+                <tr>
+                    <td style="width: 20%;"><b>本级政府或其职能部门作出的对项目可能产生重大影响的规定、决定等</b></td>
+                    <td colspan="5" style="text-align: left">
+                    	
+                           	
+		   					
+		   						暂无
+		   					
+		   					
+                    </td>
+                </tr>
+                <tr>
+                    <td style="width: 20%;"><b>项目或项目直接相关方重大纠纷、涉诉或涉仲情况</b></td>
+                    <td colspan="5" style="text-align: left">
+                    	
+                           	
+		   					
+		   						暂无
+		   					
+		   					
+                    </td>
+                </tr>
+                
+                
+
+                </tbody>
+            </table>
+
+            <p class="txtlft" style="    margin-top: 30px;">适时公开</p>
+            <table class="view_table" style="font-size: 13px;line-height: 26px;">
+                <tbody>
+                <!--融资额度、融资主要条件及融资交割情况-->
+                <tr>
+                    <td style="text-align:center;font-weight: bold;background-color: #e2edff;;font-size: 14px;border-top: none;border-bottom: none;" colspan="6">融资额度、融资主要条件及融资交割情况</td>
+                </tr>
+                <tr style="border: none;">
+                    <td colspan="6" style="border: none;padding: 0;">
+                        <table id="rzjgTable" class="view_table" style="font-size: 13px;line-height: 26px;margin-top: 0;">
+                            <tbody>
+                           <!--  <tr>
+                                <td style="width: 6%;">序号</td>
+                                <td style="width: 20%;">融资机构名称</td>
+                                <td style="width: 10%;">融资额（万元）</td>
+                                <td style="width: 45%;">主要条件</td>
+                                <td style="width: 10%;">融资交割时间</td>
+                            </tr> -->
+	                        
+                            
+		   					
+		   						  <tr>
+		                              <td style="color: #ff9c00;border-bottom: none;" colspan="7">对应事项确定或完成后次年的4月30日前予以公开</td>
+		                          </tr>
+		   					
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="width: 20%;"><b>项目公司成本监审情况</b></td>
+                    <td colspan="5" style="text-align: left">
+                    	
+                    	
+		   				
+	   						  <span style="color: #ff9c00;">对应活动结束后次年的4月30日前予以公开 </span>
+	   					
+                    </td>
+                </tr>
+                <tr>
+                    <td style="width: 20%;"><b>PPP合同修订协议或补充协议</b></td>
+                    <td colspan="5" style="text-align: left">
+                    	
+                    	
+		   				
+	   						 <span style="color: #ff9c00;"> 对应活动结束后次年的4月30日前予以公开 </span>
+	   					
+                    </td>
+                </tr>
+                <tr>
+                    <td style="width: 20%;"><b>项目公司财务报告相关内容，包括项目收费情况，项目获得的政府补贴情况，项目公司资产负债情况等</b></td>
+                    <td colspan="5" style="text-align: left">
+                    	
+		   				
+		   				
+	   						 <span style="color: #ff9c00;">对应活动结束后次年的4月30日前予以公开 </span>
+	   					
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+
+<script src="css/ppp/expertLibrary/js/jquery.min.js"></script>
+<script src="css/ppp/expertLibrary/js/bootstrap.min.js"></script>
+
+</body>
+</html>
+			</div>
+        	
+        </div>
+        <div style="display:none;" id="con_ss_5">
+			<div>
+				
+<!DOCTYPE html>
+<html>
+<head lang="zh-CN">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!--[if lt IE 9]>
+    <script src="http://apps.bdimg.com/libs/html5shiv/3.7/html5shiv.min.js"></script>
+    <script src="http://apps.bdimg.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link href="css/demonstrationProj/css/bootstrap.min.css" rel="stylesheet ">
+    <title>咨询机构查询</title>
+</head>
+<body style="background-color: #fff;font-family: 'Microsoft Yahei'">
+
+        <!--移交阶段-->
+            <p class="txtlft" style="margin-top: 15px;">即时公开</p>
+            <table class="view_table" style="font-size: 13px;line-height: 26px;">
+                <tbody>
+                <tr>
+                    <td style="width: 20%;"><b>移交工作组的组成、移交程序、移交标准等移交方案</b></td>
+                    <td colspan="5" style="text-align: left">
+                    	
+                    </td>
+                </tr>
+                <tr>
+                    <td style="width: 20%;"><b>移交资产或设施或权益清单</b></td>
+                    <td colspan="5" style="text-align: left">
+                    	
+                    </td>
+                </tr>
+                <tr>
+                    <td style="width: 20%;"><b>移交资产或权益评估报告</b></td>
+                    <td colspan="5" style="text-align: left">
+		    			    
+                    </td>
+                </tr>
+                <tr>
+                    <td style="width: 20%;"><b>性能测试方案</b></td>
+                    <td colspan="5" style="text-align: left">
+                    	
+                    </td>
+                </tr>
+                <tr>
+                    <td style="width: 20%;"><b>移交项目资产或设施上各类担保或权益限制的解除情况</b></td>
+                    <td colspan="5" style="text-align: left">
+                    	
+                    </td>
+                </tr>
+                <tr>
+                    <td style="width: 20%;"><b>项目设施移交标准达标检测结果</b></td>
+                    <td colspan="5" style="text-align: left">
+                    	
+                    </td>
+                </tr>
+                <tr>
+                    <td style="width: 20%;"><b>项目后续运作方式（描述）</b></td>
+                    <td colspan="5" style="text-indent: 25px;text-align: left"></td>
+                </tr>
+                <tr>
+                    <td style="width: 20%;"><b>项目后评价报告以及后续运作方式</b></td>
+                    <td colspan="5" style="text-align: left">
+                    	
+                    </td>
+                </tr>
+
+                </tbody>
+            </table>
+
+<script src="css/ppp/expertLibrary/js/jquery.min.js"></script>
+<script src="css/ppp/expertLibrary/js/bootstrap.min.js"></script>
+</body>
+</html>
+			</div>
+        	
+        </div>
+
+    </div><!--jieduan-->
+</div>
+
+<!-- <div class="footer">
+		<div class="mar">
+			<div class="img">
+				<img src="images/map/footer-img.png" width="50" height="62" />
+			</div>
+			<div class="dis">
+				<div class="guild">
+					<a href="javascript:void(0);">联系我们</a><i>|</i><a href="javascript:void(0);">加入我们</a><i>|</i><a href="javascript:void(0);">友情链接</a><i>|</i><a
+						href="javascript:void(0);">网站地图</a>
+				</div>
+				<div class="copyr">
+					政府和社会资本合作中心 © · All Rights Reserved <br /> 
+					京ICP备07504037号-2 京公网安备110102005872号-2 
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="code">
+		<div class="con">
+			<img src="images/map/code.png" width="105" height="135" />
+		</div>
+		<div class="con" style="margin-top:10px;"><img src="images/map/ppp_ma.png" width="105" height="135" /></div>
+	</div> -->
+	<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+	<div class="footer" style="font-size:12px;">
+		<div class="mar">
+			<div class="img">
+				<img src="images/map/footer-img.png" width="50" height="62" />
+			</div>
+			<div class="dis">
+				<div class="guild">
+					<a href="http://www.cpppc.org/ppplxwm/index.jhtml" target="_blank">联系我们</a><i>|</i><a href="http://www.cpppc.org/jrwm/index.jhtml">加入我们</a><i>|</i><a href="javascript:void(0);">友情链接</a><i>|</i><a
+						href="javascript:void(0);">网站地图</a>
+				</div>
+				<div class="copyr">
+					政府和社会资本合作中心 © · All Rights Reserved <br />  
+					京ICP备07504037号-2 京公网安备110102005872号-2 
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	
+	
+	<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<style>
+       /*二维码*/
+		.right-bar{position: fixed;right: 0;top: 45%;}
+		.rightBar-con{position: absolute;right: 0;top: 0;}
+		.rightBar-con> div{width: 46px;height: 46px;margin-top: -1px;border: 1px solid #cdcdcd;background: url(images/footer/download.png) no-repeat center;}
+		.rightBar-con> div:hover{background:#60aede url(images/footer/download1.png) no-repeat center;}
+		.rightBar-con .rwm{background: url(images/footer/rwm.png) no-repeat center;}
+		.rightBar-con .rwm:hover{background:#60aede url(images/footer/rwm1.png) no-repeat center;}
+		.rightBar-con .btnTop{background: url(images/footer/backTop.png) no-repeat center;}
+		.rightBar-con .btnTop:hover{background:#60aede url(images/footer/backTop1.png) no-repeat center;}
+		
+		.downLoadCon,.rwmCon{position: absolute;top: 0;right: 48px;padding: 0 8px 8px 8px;display: none;}
+		.show{display: block;}
+</style>
+	<div class="right-bar">
+		<div class="rightBar-con">
+			<div class="domnLoad">
+				<div class="downLoadCon">
+					<a href="http://www.cdmfund.org/pppweb/ppp/download/downloadAPK.do?fileName=China PPP Map.apk">
+					  <img src="images/footer/cn.png" alt=""/>
+					</a>
+				</div>
+			</div>
+			<div class="rwm">
+				<div class="rwmCon">
+					<img src="images/footer/code.png" />
+					<img src="images/footer/ppp_ma.png"/>
+				</div>
+			</div>
+			<div class="btnTop"></div>
+		</div>
+	</div>
+	<script>
+    $(function(){
+        $(".rightBar-con>div").hover(function(){
+            $(this).children().addClass("show").parent().siblings().children().removeClass("show");
+        },function(){
+            $(this).children().removeClass("show");
+        });
+
+        $(".btnTop").click(function(){
+            $(document).scrollTop(0);
+        });
+    });
+</script>
+	
+	
+
+
+<script src="css/ppp/expertLibrary/js/jquery.min.js"></script>
+<script src="css/ppp/expertLibrary/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+	/* function setTab(name,cursel,n){
+	for(i=1;i<=n;i++){
+		var menu=document.getElementById(name+"_"+i);
+		var con=document.getElementById("con_"+name+"_"+i);
+		menu.className=(i==cursel)?"hover":"";
+		con.style.display=(i==cursel)?"":"none";
+		}
+	} */
+	
+function setTab2(name,cursel,n){
+	for(i=1;i<=n;i++){
+		var menu=document.getElementById(name+"_"+i);
+		var con=document.getElementById("con_"+name+"_"+i);
+		menu.className=(i==cursel)?"active":"";
+		con.style.display=(i==cursel)?"":"none";
+		}
+	}
+/* function setTab1(name,cursel,n){
+	for(i=1;i<=n;i++){
+		var menu=document.getElementById(name+"_"+i);
+		var con=document.getElementById("con_"+name+"_"+i);
+		menu.className=(i==cursel)?"active":"";
+		con.style.display=(i==cursel)?"inline-flex":"none";
+	}
+} */
+	
+  	function perviewPdf(obj){
+		obj.setAttribute("href",obj.getAttribute("url")+"&content=efmisweb&xsg="+getPort());
+	}
+	function addlLneNo(tableId){
+		$("#"+tableId).find("tr").each(function(i, tdDom) {
+			if (i > 0) {
+				var tr = $(this);
+				tr.find(".lineNo").html(i);
+			}
+		});
+	}
+	function addlLneNoN(tableId){
+		$("#"+tableId).find("tr").each(function(i, tdDom) {
+			var tr = $(this);
+			tr.find(".lineNo").html(i+1);
+		});
+	}
+	function delTableTitle(){
+		var jsjdflag = '1';
+		if(jsjdflag != "0")
+		  $("#jsjdTable").find("tr:eq(0)").hide();
+		var zljcflag = '1';
+		if(zljcflag != "0")
+		  $("#zljcTable").find("tr:eq(0)").hide();
+		var zjjcflag = '1';
+		if(zjjcflag != "0")
+		  $("#zjjcTable").find("tr:eq(0)").hide();
+		var ndyyjxdbflag = '1';
+		if(ndyyjxdbflag != "0")
+		  $("#ndyyjxdbTable").find("tr:eq(0)").hide();
+		var zqpgflag = '1';
+		if(zqpgflag != "0")
+		  $("#zqpgTable").find("tr:eq(0)").hide();
+		var rzjgflag = '1';
+		if(rzjgflag != "0")
+		  $("#rzjgTable").find("tr:eq(0)").hide();
+		var gdrjflag = '';
+		if(gdrjflag != "0")
+		  $("#gdrjTable").find("tr:eq(0)").hide();
+	}
+	$(function(){
+		/* $('.listsg li').click(function () {
+			var index = $(this).index();
+			$(this).attr('class',"tabhover").siblings('li').attr('class','taba');
+			$('.tabcontent').eq(index).show(200).siblings('.tabcontent').hide();
+		}); */
+// 		var t = 0;
+// 		var timer = setInterval(function(){
+// 		if( t == $('.tabtitle li').length ) t = 0;
+// 		$('.tabtitle li:eq('+t+')').click();
+// 			t++;
+// 		}, 700);
+		var stateValue = $("#stateValue").val();
+		debugger
+		if(stateValue == 1){
+			$("#ss_2").attr('onclick', 'javascript:void(0);');
+			$("#ss_2").css('color', '#ccc');
+			$("#ss_2").addClass('disabled');
+// 			$("#zhuibeia").addClass('disabled');
+			$("#ss_3").attr('onclick', 'javascript:void(0);');
+			$("#ss_3").css('color', '#ccc');
+			$("#ss_3").addClass('disabled');
+// 			$("#caigoua").addClass('disabled');
+			$("#ss_4").attr('onclick', 'javascript:void(0);');
+			$("#ss_4").css('color', '#ccc');
+			$("#ss_4").addClass('disabled');
+// 			$("#zhixinga").addClass('disabled');
+			$("#ss_5").attr('onclick', 'javascript:void(0);');
+			$("#ss_5").css('color', '#ccc');
+			$("#ss_5").addClass('disabled');
+// 			$("#yijiaoa").addClass('disabled');
+		}else if(stateValue == 2){
+			$("#ss_3").attr('onclick', 'javascript:void(0);');
+			$("#ss_3").css('color', '#ccc');
+			$("#ss_3").addClass('disabled');
+// 			$("#caigoua").addClass('disabled');
+			$("#ss_4").attr('onclick', 'javascript:void(0);');
+			$("#ss_4").css('color', '#ccc');
+			$("#ss_4").addClass('disabled');
+// 			$("#zhixinga").addClass('disabled');
+			$("#ss_5").attr('onclick', 'javascript:void(0);');
+			$("#ss_5").css('color', '#ccc');
+			$("#ss_5").addClass('disabled');
+// 			$("#yijiaoa").addClass('disabledtab');
+		}else if(stateValue == 3){
+			$("#ss_4").attr('onclick', 'javascript:void(0);');
+			$("#ss_4").css('color', '#ccc');
+			$("#ss_4").addClass('disabled');
+// 			$("#zhixinga").addClass('disabled');
+			$("#ss_5").attr('onclick', 'javascript:void(0);');
+			$("#ss_5").css('color', '#ccc');
+			$("#ss_5").addClass('disabled');
+// 			$("#yijiaoa").addClass('disabled');
+		}else if(stateValue == 4){
+			$("#ss_5").attr('onclick', 'javascript:void(0);');
+			$("#ss_5").css('color', '#ccc');
+			$("#ss_5").addClass('disabled');
+// 			$("#yijiaoa").addClass('disabled');
+		}
+		addlLneNo("zqpgTable");
+		addlLneNo("ndyyjxdbTable");
+		addlLneNo("jsjdTable");
+		addlLneNo("zjTable");
+		addlLneNo("zjjcTable");
+		addlLneNoN("rzjgTable");
+		//delTableTitle();
+	});
+</script>
+</body>
+</html></html>
