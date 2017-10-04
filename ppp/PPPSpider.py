@@ -17,6 +17,9 @@ class PPPSpider(BaseSpider):
     re_time_x = '//div[@class="margin"]//center//text()'
     details_x = '//div[@class="margin"]//table[@class="view_table"]//text()'
 
+    # detail xpath
+    shibie_jishi_xiangmugaikuang_x = '//*[@id="con_ss_1"]/div/table[1]/tbody/tr[1]/td[2]//text()'
+
     def get_list(self, page_num):
         payload = {'queryPage': page_num}
         resp = requests.post(self.list_tpl, params=payload).text
