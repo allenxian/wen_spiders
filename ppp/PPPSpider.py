@@ -26,6 +26,7 @@ class PPPSpider(BaseSpider):
     shibie_jishi_cgshzbfs_x = '//*[@id="con_ss_1"]/div/table[1]/tbody/tr[4]/td[2]//text()'
     shibie_jishi_wpp_x = '//*[@id="con_ss_1"]/div/table[1]/tbody/tr[5]/td[2]//text()'
     shibie_jishi_w_x = '//*[@id="con_ss_1"]/div/table[1]/tbody/tr[6]/td[2]/span//text()'
+    shibie_jishi_zhichu_x = '//*[@id="con_ss_1"]/div/table[1]/tbody/tr[8]/td/table/tbody/tr[2]/td/span//text()'
 
     def first_extra(self, list_0):
         if len(list_0) == 0:
@@ -97,6 +98,8 @@ class PPPSpider(BaseSpider):
         print(shibie_jishi_wpp)
         shibie_jishi_w = self.first_extra(list(self.parse_value(hxs, self.shibie_jishi_w_x)))
         print(shibie_jishi_w)
+        shibie_jishi_zhichu = self.first_extra(list(self.parse_value(hxs, self.shibie_jishi_zhichu_x)))
+        print(shibie_jishi_zhichu)
 
 
     def output_example(self, id):
