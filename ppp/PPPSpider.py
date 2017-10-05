@@ -25,7 +25,13 @@ class PPPSpider(BaseSpider):
     shibie_jishi_xmyzfs_x = '//*[@id="con_ss_1"]/div/table[1]/tbody/tr[3]/td[4]//text()'
     shibie_jishi_cgshzbfs_x = '//*[@id="con_ss_1"]/div/table[1]/tbody/tr[4]/td[2]//text()'
     shibie_jishi_wpp_x = '//*[@id="con_ss_1"]/div/table[1]/tbody/tr[5]/td[2]//text()'
+    shibie_jishi_w_x = '//*[@id="con_ss_1"]/div/table[1]/tbody/tr[6]/td[2]/span//text()'
 
+    def first_extra(self, list_0):
+        if len(list_0) == 0:
+            return 'null'
+        else:
+            return list_0[0]
 
 
 
@@ -77,18 +83,20 @@ class PPPSpider(BaseSpider):
         coll = MONGO_CLIENT['ppp']['proj_text']
         resp = coll.find_one({'_id': id})['text']
         hxs = Selector(text=resp)
-        shibie_jishi_xmgk = list(self.parse_value(hxs, self.shibie_jishi_xmgk_x))[0]
+        shibie_jishi_xmgk = self.first_extra(list(self.parse_value(hxs, self.shibie_jishi_xmgk_x)))
         print(shibie_jishi_xmgk)
-        shibie_jishi_xmhzfw = list(self.parse_value(hxs, self.shibie_jishi_xmhzfw_x))[0]
+        shibie_jishi_xmhzfw = self.first_extra(list(self.parse_value(hxs, self.shibie_jishi_xmhzfw_x)))
         print(shibie_jishi_xmhzfw)
-        shibie_jishi_hzqx = list(self.parse_value(hxs, self.shibie_jishi_hzqx_x))[0]
+        shibie_jishi_hzqx = self.first_extra(list(self.parse_value(hxs, self.shibie_jishi_hzqx_x)))
         print(shibie_jishi_hzqx)
-        shibie_jishi_xmyzfs = list(self.parse_value(hxs, self.shibie_jishi_xmyzfs_x))[0]
+        shibie_jishi_xmyzfs = self.first_extra(list(self.parse_value(hxs, self.shibie_jishi_xmyzfs_x)))
         print(shibie_jishi_xmyzfs)
-        shibie_jishi_cgshzbfs = list(self.parse_value(hxs, self.shibie_jishi_cgshzbfs_x))[0]
+        shibie_jishi_cgshzbfs = self.first_extra(list(self.parse_value(hxs, self.shibie_jishi_cgshzbfs_x)))
         print(shibie_jishi_cgshzbfs)
-        shibie_jishi_wpp = list(self.parse_value(hxs, self.shibie_jishi_wpp_x))
+        shibie_jishi_wpp = self.first_extra(list(self.parse_value(hxs, self.shibie_jishi_wpp_x)))
         print(shibie_jishi_wpp)
+        shibie_jishi_w = self.first_extra(list(self.parse_value(hxs, self.shibie_jishi_w_x)))
+        print(shibie_jishi_w)
 
 
     def output_example(self, id):
