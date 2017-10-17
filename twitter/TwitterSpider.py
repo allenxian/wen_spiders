@@ -7,7 +7,7 @@ from parsel import Selector
 class TwitterSpider(BaseSpider):
     # api part
     consumer_key = '0S6siec5MhdPlReKc5y1EgFbE'
-    consumer_secret = '	sq0AE7Xtalvx001TyPl6NwzFptuCntHprveyO69drh8yDtAZXb'
+    consumer_secret = 'sq0AE7Xtalvx001TyPl6NwzFptuCntHprveyO69drh8yDtAZXb'
     access_token = '862235971361710080-wnK3bwTONdXZ7UoX9mJBWTVAqE4Ub1k'
     access_token_secret = 'wbsFax1dxtqO5zduBMPJWc9PRNFACNQvifNT84pgBOUpc'
     auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
