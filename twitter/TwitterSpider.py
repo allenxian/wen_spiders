@@ -52,7 +52,7 @@ class TwitterSpider(BaseSpider):
 
     def get_status(self, tweet_id):
         repo = self.api.request('statuses/show/:%s' % tweet_id)
-        return repo
+        return repo.text
 
     ## test
     def get_test(self):
@@ -62,6 +62,4 @@ class TwitterSpider(BaseSpider):
 
 if __name__ == '__main__':
     spider  = TwitterSpider()
-    print(type(spider.get_test()))
-    print(spider.get_test().text)
-
+    spider.get_tweets()
