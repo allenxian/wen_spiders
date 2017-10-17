@@ -1,6 +1,6 @@
 from utils.base import BaseSpider
 import tweepy
-
+from TwitterAPI import TwitterAPI
 import requests
 import time
 from parsel import Selector
@@ -11,9 +11,15 @@ class TwitterSpider(BaseSpider):
     consumer_secret = 'sq0AE7Xtalvx001TyPl6NwzFptuCntHprveyO69drh8yDtAZXb'
     access_token = '862235971361710080-wnK3bwTONdXZ7UoX9mJBWTVAqE4Ub1k'
     access_token_secret = 'wbsFax1dxtqO5zduBMPJWc9PRNFACNQvifNT84pgBOUpc'
-    auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
-    auth.set_access_token(access_token, access_token_secret)
-    api = tweepy.API(auth)
+
+    # tweepy
+    # auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
+    # auth.set_access_token(access_token, access_token_secret)
+    # api = tweepy.API(auth)
+
+    # TwitterAPI
+    api = TwitterAPI(consumer_key, consumer_secret, access_token, access_token_secret)
+
 
 
     # proxy
@@ -33,7 +39,7 @@ class TwitterSpider(BaseSpider):
 
     ## test
     def get_test(self):
-        repo = self.api.get_status(self.demo_tweet_id)
+        repo = self.api.request('statuses/show/:%s' % self.demo_tweet_id)
         return repo
 
 
