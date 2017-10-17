@@ -1,7 +1,7 @@
 from utils.base import BaseSpider
-import tweepy
+from utils.config import MONGO_CLIENT
+
 from TwitterAPI import TwitterAPI
-import requests
 import time
 from parsel import Selector
 
@@ -20,8 +20,6 @@ class TwitterSpider(BaseSpider):
     # TwitterAPI
     api = TwitterAPI(consumer_key, consumer_secret, access_token, access_token_secret)
 
-
-
     # proxy
     proxies = {
         'https': 'https://127.0.0.1:1080',
@@ -36,6 +34,25 @@ class TwitterSpider(BaseSpider):
 
     ## demo
     demo_tweet_id = '762005409519448065'
+
+    ## function
+    def get_tweets(self):
+        coll = MONGO_CLIENT['twitter']['tweet_status']
+        with open('twitter/rts2016-clusters.txt') as f:
+            lines = f.readlines()
+            for line in lines:
+                time.sleep(0.5)
+                parts = line.split('\t')
+                tweet_id = parts[2].replace('\n', '')
+                one_tweet = {}
+                one_tweet['_id'] = tweet_id
+                one_tweet['content'] = self.get_status(tweet_id)
+                self.save_doc(coll, one_tweet)
+
+
+    def get_status(self, tweet_id):
+        repo = self.api.request('statuses/show/:%s' % tweet_id)
+        return repo
 
     ## test
     def get_test(self):

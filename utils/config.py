@@ -7,7 +7,7 @@ redis_setting = {
         'host': 'localhost',
         'port': 6379,
         'max_connections': 200,
-        'db': 2,
+        'db': 1,
     }
 }
 mongo_setting = {
@@ -16,4 +16,4 @@ mongo_setting = {
 REDIS_CLIENT = StrictRedis(**redis_setting[env])
 MONGO_CLIENT = MongoClient(mongo_setting[env])
 
-DB_NAME = 'ppp'
+DB_NAME = 'base'

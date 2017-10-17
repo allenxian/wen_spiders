@@ -1,5 +1,4 @@
-from kr.config import REDIS_CLIENT
-from kr.config import MONGO_CLIENT
+from ppp.config import MONGO_CLIENT
 import requests
 from utils.base import BaseSpider
 import json

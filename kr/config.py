@@ -11,10 +11,10 @@ redis_setting = {
         'db': 1,
     }
 }
-
 mongo_setting = {
     'dev': 'mongodb://127.0.0.1:27017'
 }
+
 
 REDIS_CLIENT = StrictRedis(**redis_setting[env])
 MONGO_CLIENT = MongoClient(mongo_setting[env])

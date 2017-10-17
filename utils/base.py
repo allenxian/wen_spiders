@@ -1,7 +1,6 @@
 import requests
 from utils.user_agents import random_ua
-from kr.config import MONGO_CLIENT, DB_NAME
-
+from utils.config import MONGO_CLIENT, DB_NAME
 
 class BaseSpider(object):
     website = 'base'
