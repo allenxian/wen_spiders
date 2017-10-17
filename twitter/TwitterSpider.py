@@ -45,4 +45,6 @@ class TwitterSpider(BaseSpider):
 
 if __name__ == '__main__':
     spider  = TwitterSpider()
+    print(type(spider.get_test()))
     print(spider.get_test())
+
