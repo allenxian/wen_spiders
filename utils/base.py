@@ -32,9 +32,9 @@ class BaseSpider(object):
         self.HEADERS.update({'User-Agent': random_ua()})
         return self.HEADERS
 
-    def p_get(self, url):
+    def p_get(self, url, proxies=None):
         headers = self.random_header
-        return requests.get(url, headers=headers)
+        return requests.get(url, headers=headers, proxies=proxies)
 
     def generate_key(self):
         return '{website}_{key_name}'.format(website=self.website, key_name=self.key_name)
