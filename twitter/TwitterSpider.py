@@ -3,6 +3,7 @@ from utils.config import MONGO_CLIENT
 
 from TwitterAPI import TwitterAPI
 import time
+import json
 from parsel import Selector
 
 class TwitterSpider(BaseSpider):
@@ -49,17 +50,26 @@ class TwitterSpider(BaseSpider):
                 one_tweet['content'] = self.get_status(tweet_id)
                 self.save_doc(coll, one_tweet)
 
-
     def get_status(self, tweet_id):
         repo = self.api.request('statuses/show/:%s' % tweet_id)
         return repo.text
+
+    def load_docs(self):
+        good_count = 0
+        coll = MONGO_CLIENT['twitter']['tweet_status']
+        for doc in coll.find():
+            content_dict = json.loads(doc['content'])
+            if 'text' in content_dict:
+                good_count += 1
+                # print(content_dict['text'], content_dict['created_at'])
+        print(good_count)
 
     ## test
     def get_test(self):
         repo = self.api.request('statuses/show/:%s' % self.demo_tweet_id)
         return repo
 
-
 if __name__ == '__main__':
     spider  = TwitterSpider()
-    spider.get_tweets()
+    # spider.get_tweets()
+    spider.load_docs()
