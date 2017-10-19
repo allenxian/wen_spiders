@@ -26,14 +26,16 @@ class PPPSpider(BaseSpider):
     shibie_jishi_wpp_x = '//*[@id="con_ss_1"]/div/table[1]/tbody/tr[5]/td[2]//text()'
     shibie_jishi_w_x = '//*[@id="con_ss_1"]/div/table[1]/tbody/tr[6]/td[2]/span//text()'
     shibie_jishi_zhichu_x = '//*[@id="con_ss_1"]/div/table[1]/tbody/tr[8]/td/table/tbody/tr[2]/td/span//text()'
+    shibie_jishi_cz_x = '//*[@id="con_ss_1"]/div/table[1]/tbody/tr[9]/td[2]//text()'
+    shibie_jishi_t_x = '//*[@id="con_ss_1"]/div/table[1]/tbody/tr[10]/td[2]/span//text()'
+    shibie_shishi_wyszp_x = '//*[@id="con_ss_1"]/div/table[2]/tbody/tr[1]/td[2]/span//text()'
+    shibie_shishi_czcsn_x = '//*[@id="con_ss_1"]/div/table[2]/tbody/tr[2]/td[2]/span//text()'
 
     def first_extra(self, list_0):
         if len(list_0) == 0:
             return 'null'
         else:
             return list_0[0]
-
-
 
 
     def get_list(self, page_num):
@@ -99,6 +101,19 @@ class PPPSpider(BaseSpider):
         print(shibie_jishi_w)
         shibie_jishi_zhichu = self.first_extra(list(self.parse_value(hxs, self.shibie_jishi_zhichu_x)))
         print(shibie_jishi_zhichu)
+        shibie_jishi_cz = self.first_extra(list(self.parse_value(hxs, self.shibie_jishi_cz_x)))
+        print(shibie_jishi_cz)
+        shibie_jishi_t = self.first_extra(list(self.parse_value(hxs, self.shibie_jishi_t_x)))
+        print(shibie_jishi_t)
+        shibie_shishi_wyszp = self.first_extra(list(self.parse_value(hxs, self.shibie_shishi_wyszp_x)))
+        print(shibie_shishi_wyszp)
+        shibie_shishi_czcsn = self.first_extra(list(self.parse_value(hxs, self.shibie_shishi_czcsn_x)))
+        print(shibie_shishi_czcsn)
+
+
+
+
+
 
 
     def output_example(self, id):
@@ -112,12 +127,10 @@ class PPPSpider(BaseSpider):
 if __name__ == '__main__':
     spider = PPPSpider()
 
-    lines = open('id_f.txt').readlines()
+    lines = open('ppp/id_f.txt').readlines()
     id_0 = lines[0].replace('\n', '')
     spider.parse_detail(id_0)
     # spider.output_example(id_0)
-
-
     # f = xlwt.Workbook()
     # sheet1 = f.add_sheet('sheet1', cell_overwrite_ok=True)
     # header = ['项目名称', '项目发布时间', '所在地区', '所属行业', '项目总投资', '所处阶段', '发起时间', '回报机制', '项目示范级别/批次', '项目联系人', '联系电话', '项目地址']
