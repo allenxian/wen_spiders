@@ -69,21 +69,30 @@ class TwitterSpider(BaseSpider):
         repo = self.api.request('statuses/show/:%s' % self.demo_tweet_id)
         return repo
 
-    def add_cluster_id(self):
+    def add_info(self):
         # add cluster id
         coll_1 = MONGO_CLIENT['twitter']['tweet_status']
-        coll_2 = MONGO_CLIENT['twitter']['tweet_status_new']
-        id_dict = {}
-        with open('twitter/rts2016-clusters.txt') as f:
+        coll_2 = MONGO_CLIENT['twitter']['tweet_status_x']
+        cluster_dict = {}
+        rel_dict = {}
+        with open('./twitter/rts2016-clusters.txt') as f:
             lines = f.readlines()
             for line in lines:
                 parts = line.split('\t')
                 tweet_id = parts[2].replace('\n', '')
                 cluster_id = parts[1]
-                id_dict[tweet_id] = cluster_id
+                cluster_dict[tweet_id] = cluster_id
+        with open('./twitter/rts2016-qrels.txt') as f:
+            lines = f.readlines()
+            for line in lines:
+                parts = line.split(' ')
+                tweet_id = parts[2]
+                relevance = parts[3].replace('\n', '')
+                rel_dict[tweet_id] = relevance
         for doc in coll_1.find():
             new_doc = doc
-            new_doc['cluster_id'] = id_dict[doc['_id']]
+            new_doc['cluster_id'] = cluster_dict[doc['_id']]
+            new_doc['relevance'] = rel_dict[doc['_id']]
             self.save_doc(coll_2, new_doc)
 
 
@@ -94,4 +103,4 @@ class TwitterSpider(BaseSpider):
 if __name__ == '__main__':
     spider  = TwitterSpider()
     # spider.get_tweets()
-    spider.add_cluster_id()
+    spider.add_info()
