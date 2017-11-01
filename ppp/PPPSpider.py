@@ -17,7 +17,7 @@ class PPPSpider(BaseSpider):
     details_x = '//div[@class="margin"]//table[@class="view_table"]//text()'
 
     # detail xpath
-    # shibie
+    # shibie part
     shibie_jishi_xmgk_x = '//*[@id="con_ss_1"]/div/table[1]/tbody/tr[1]/td[2]//text()'
     shibie_jishi_xmhzfw_x = '//*[@id="con_ss_1"]/div/table[1]/tbody/tr[2]/td[2]//text()'
     shibie_jishi_hzqx_x = '//*[@id="con_ss_1"]/div/table[1]/tbody/tr[3]/td[2]//text()'
@@ -34,6 +34,19 @@ class PPPSpider(BaseSpider):
     shibie_shishi_kxxyj_x = '//*[@id="con_ss_1"]/div/table[2]/tbody/tr[4]/td[2]/span//text()'
     shibie_shishi_sjwjj_x = '//*[@id="con_ss_1"]/div/table[2]/tbody/tr[5]/td[2]/span//text()'
     shibie_shishi_clggz_x = '//*[@id="con_ss_1"]/div/table[2]/tbody/tr[6]/td[2]/span//text()'
+
+    # zhunbei part
+    zhunbei_jishi_xmgk_x = '//*[@id="con_ss_2"]/div/table[1]/tbody/tr[1]/td[2]//text()'
+    zhunbei_jishi_xmhzf_x = '//*[@id="con_ss_2"]/div/table[1]/tbody/tr[2]/td[2]//text()'
+    zhunbei_jishi_hzqx_x = '//*[@id="con_ss_2"]/div/table[1]/tbody/tr[3]/td[2]//text()'
+    zhunbei_jishi_xmyzf_x = '//*[@id="con_ss_2"]/div/table[1]/tbody/tr[3]/td[4]//text()'
+    zhunbei_jishi_cgshz_x = '//*[@id="con_ss_2"]/div/table[1]/tbody/tr[4]/td[2]//text()'
+    zhunbei_jishi_zffsq_x = '//*[@id="con_ss_2"]/div/table[1]/tbody/tr[5]/td[2]//text()'
+    zhunbei_jishi_zfdss_x = '//*[@id="con_ss_2"]/div/table[1]/tbody/tr[6]/td[2]//text()'
+    zhunbei_shishi_jyjg_x = '//*[@id="con_ss_2"]/div/table[2]/tbody/tr[1]/td[2]//text()'
+    zhunbei_shishi_shtgd_x = '//*[@id="con_ss_2"]/div/table[2]/tbody/tr[1]/td[2]//text()'
+
+
 
     def first_extra(self, list_0):
         if len(list_0) == 0:
@@ -89,6 +102,7 @@ class PPPSpider(BaseSpider):
         coll = MONGO_CLIENT['ppp']['proj_text']
         resp = coll.find_one({'_id': id})['text']
         hxs = Selector(text=resp)
+        # shibie part
         shibie_jishi_xmgk = self.first_extra(list(self.parse_value(hxs, self.shibie_jishi_xmgk_x)))
         print(shibie_jishi_xmgk)
         shibie_jishi_xmhzfw = self.first_extra(list(self.parse_value(hxs, self.shibie_jishi_xmhzfw_x)))
@@ -122,6 +136,36 @@ class PPPSpider(BaseSpider):
         shibie_shishi_clggz = self.first_extra(list(self.parse_value(hxs, self.shibie_shishi_clggz_x)))
         print(shibie_shishi_clggz)
 
+        # zhunbei part
+        zhunbei_jishi_xmgk = self.first_extra(list(self.parse_value(hxs, self.zhunbei_jishi_xmgk_x)))
+        print(zhunbei_jishi_xmgk)
+        zhunbei_jishi_xmhzf = self.first_extra(list(self.parse_value(hxs, self.zhunbei_jishi_xmhzf_x)))
+        print(zhunbei_jishi_xmhzf)
+        zhunbei_jishi_hzqx = self.first_extra(list(self.parse_value(hxs, self.zhunbei_jishi_hzqx_x)))
+        print(zhunbei_jishi_hzqx)
+        zhunbei_jishi_xmyzf = self.first_extra(list(self.parse_value(hxs, self.zhunbei_jishi_xmyzf_x)))
+        print(zhunbei_jishi_xmyzf)
+        zhunbei_jishi_cgshz = self.first_extra(list(self.parse_value(hxs, self.zhunbei_jishi_cgshz_x)))
+        print(zhunbei_jishi_cgshz)
+        zhunbei_jishi_zffsq = self.first_extra(list(self.parse_value(hxs, self.zhunbei_jishi_zffsq_x)))
+        print(zhunbei_jishi_zffsq)
+        zhunbei_jishi_zfdss = self.first_extra(list(self.parse_value(hxs, self.zhunbei_jishi_zfdss_x)))
+        print(zhunbei_jishi_zfdss)
+        zhunbei_shishi_jyjg = self.first_extra(list(self.parse_value(hxs, self.zhunbei_shishi_jyjg_x)))
+        print(zhunbei_shishi_jyjg)
+        zhunbei_shishi_shtgd = self.first_extra(list(self.parse_value(hxs, self.zhunbei_shishi_shtgd_x)))
+        print(zhunbei_shishi_shtgd)
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -142,7 +186,7 @@ if __name__ == '__main__':
     spider = PPPSpider()
 
     lines = open('ppp/id_f.txt').readlines()
-    id_0 = lines[0].replace('\n', '')
+    id_0 = lines[2].replace('\n', '')
     spider.parse_detail(id_0)
     # spider.output_example(id_0)
     # f = xlwt.Workbook()
