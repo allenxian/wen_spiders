@@ -30,6 +30,10 @@ class PPPSpider(BaseSpider):
     shibie_jishi_t_x = '//*[@id="con_ss_1"]/div/table[1]/tbody/tr[10]/td[2]/span//text()'
     shibie_shishi_wyszp_x = '//*[@id="con_ss_1"]/div/table[2]/tbody/tr[1]/td[2]/span//text()'
     shibie_shishi_czcsn_x = '//*[@id="con_ss_1"]/div/table[2]/tbody/tr[2]/td[2]/span//text()'
+    shibie_shishi_sbhgk_x = '//*[@id="con_ss_1"]/div/table[2]/tbody/tr[3]/td[2]//text()'
+    shibie_shishi_kxxyj_x = '//*[@id="con_ss_1"]/div/table[2]/tbody/tr[4]/td[2]/span//text()'
+    shibie_shishi_sjwjj_x = '//*[@id="con_ss_1"]/div/table[2]/tbody/tr[5]/td[2]/span//text()'
+    shibie_shishi_clggz_x = '//*[@id="con_ss_1"]/div/table[2]/tbody/tr[6]/td[2]/span//text()'
 
     def first_extra(self, list_0):
         if len(list_0) == 0:
@@ -109,6 +113,16 @@ class PPPSpider(BaseSpider):
         print(shibie_shishi_wyszp)
         shibie_shishi_czcsn = self.first_extra(list(self.parse_value(hxs, self.shibie_shishi_czcsn_x)))
         print(shibie_shishi_czcsn)
+        shibie_shishi_sbhgk = self.first_extra(list(self.parse_value(hxs, self.shibie_shishi_sbhgk_x)))
+        print(shibie_shishi_sbhgk)
+        shibie_shishi_kxxyj = self.first_extra(list(self.parse_value(hxs, self.shibie_shishi_kxxyj_x)))
+        print(shibie_shishi_kxxyj)
+        shibie_shishi_sjwjj = self.first_extra(list(self.parse_value(hxs, self.shibie_shishi_sjwjj_x)))
+        print(shibie_shishi_sjwjj)
+        shibie_shishi_clggz = self.first_extra(list(self.parse_value(hxs, self.shibie_shishi_clggz_x)))
+        print(shibie_shishi_clggz)
+
+
 
 
 
